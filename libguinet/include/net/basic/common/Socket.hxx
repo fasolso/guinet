@@ -15,16 +15,18 @@ namespace net
         Socket();
         ~Socket();
 
-        int recieve(uint8_t* buffer, int length);
-        int trasmit(uint8_t* buffer, int length);
+        int recieve(uint8_t* buffer, size_t length, uint32_t flags = 0);
+        int trasmit(uint8_t* buffer, size_t length, uint32_t flags = 0);
 
     private:
-        int open(ESockOpenAction action, AddrInfo addr);
-        int close();
+        int _listen(AddrInfo addr, SockInfo sock);
+        int _connect(AddrInfo addr, SockInfo sock);
+        int _close();
 
     private:
-        fdtype m_socket;
+        fdtype m_fdSocket;
         AddrInfo m_addr;
+        SockInfo m_sock;
 
         int             m_state;
         ESocketError    m_error;

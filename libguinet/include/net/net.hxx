@@ -10,6 +10,14 @@ typedef int fdtype;
 
 namespace net
 {
+    struct SockInfo
+    {
+        uint32_t lowerProto;
+        uint32_t type;
+        uint32_t addrFamily;
+        uint32_t maxConnections;
+    };
+
     struct ConnInfo
     {
         time_t timeEstablished;
@@ -32,8 +40,6 @@ namespace net
         } addr;
 
         uint16_t port;
-    private:
-        fdtype m_fd;
     };
 
     enum class EPollType
@@ -51,7 +57,7 @@ namespace net
 
     enum class ESockOpenAction
     {
-        BIND_LISTEN = 0,
+        BIND_LISTEN = 1,
         CONNECT,
         BIND_LISTEN_NON_BLOCK,
         CONNECT_NON_BLOCK,
@@ -62,10 +68,24 @@ namespace net
     {
         NONE = -1,
         BADFD = 0,
+        INVALID,
         ERRIO,
         NOCON,
-        EAGAIN,
-        OTHER,
+        ADDRINUSE,
+        ADDRNOTAVAIL,
+        EWB_EAGAIN,
+        NOTSUPPORTED,
+        CONNECTING,
+        CONNECTED,
+        REFUSED,
+        TIMEOUT,
+        OTHER,//SEE ERRNO VALUE
+    };
+
+    enum class EConnectionSide
+    {
+        CLIENT = 0,
+        SERVER
     };
 
 }
