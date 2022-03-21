@@ -1,2 +1,2 @@
-# guinet
-(indev) multi-platform gui &amp; network library
+# LIBGUINET - GUI + NET(and WEB) designing library
+(indev) Universal multi-platform gui and network library, provides flexibility and scalability for network and web back-end application development, provides OpenGL interface for making desktop front-end apps.
