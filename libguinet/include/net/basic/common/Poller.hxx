@@ -10,7 +10,7 @@ namespace net
     public:
         virtual ~PollerBase() {}
 
-        int poll(int maxEvents);
+        virtual int poll(int maxEvents) = 0;
     private:
         std::queue<PollerEvent> m_events;
     };

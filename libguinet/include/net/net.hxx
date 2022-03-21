@@ -18,13 +18,6 @@ namespace net
         uint32_t maxConnections;
     };
 
-    struct ConnInfo
-    {
-        time_t timeEstablished;
-        AddrInfo addr;
-        AddrInfo dest;
-    };
-
     struct AddrInfo
     {
         union
@@ -40,6 +33,14 @@ namespace net
         } addr;
 
         uint16_t port;
+    };
+
+    //contains connections info
+    struct ConnInfo
+    {
+        time_t timeEstablished;
+        AddrInfo addr;
+        AddrInfo dest;
     };
 
     enum class EPollType
